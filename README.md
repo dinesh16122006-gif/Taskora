@@ -125,7 +125,6 @@ taskflow/
 │   │   └── index.css
 │   ├── .env.example
 │   ├── index.html
-│   ├── netlify.toml
 │   ├── vercel.json
 │   ├── package.json
 │   ├── tailwind.config.js
@@ -143,6 +142,7 @@ taskflow/
 │   └── server.js                # Entry point
 │
 ├── render.yaml                  # Render.com blueprint
+├── netlify.toml                 # Netlify build config (base=client) + SPA fallback routing
 ├── package.json                 # Root scripts (run both)
 └── README.md
 ```
@@ -308,11 +308,8 @@ npm run seed
 
 **Netlify**
 1. Import the repository.
-2. **Base directory** → `client`
-3. **Build command** → `npm run build`
-4. **Publish directory** → `dist`
-5. Add env var `VITE_API_URL`.
-6. Deploy. The included `netlify.toml` handles SPA fallback routing.
+2. Add env var `VITE_API_URL`.
+3. Deploy. The root `netlify.toml` already sets the base directory (`client`), build command, and publish directory, and handles SPA fallback routing — no manual dashboard configuration needed.
 
 ### Database
 Use **MongoDB Atlas** (free tier). Update `MONGO_URI` on your backend host to your cluster connection string.
